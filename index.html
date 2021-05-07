@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Scoped CSS Variables and JS</title>
 </head>
-<body>
+
+<body onload="docReady()" onkeydown="" onkeyup="">
   <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
 
   <div class="controls">
+
+
     <label for="spacing">Spacing:</label>
     <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+    <label for="rotate">Rotate:</label>
+    <input id="rotate" type="range" name="rotate" min="0" max="360" value="10" data-sizing="deg">
+
+    <label for="radius">Radius:</label>
+    <input id="radius" type="range" name="radius" min="0" max="100" value="10" data-sizing="%">
 
     <label for="blur">Blur:</label>
     <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
@@ -19,24 +29,69 @@
     <link rel="stylesheet" href="css\style.css">
   </div>
 
-  <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+  <!-- <img id="image1" src="https://source.unsplash.com/7bwQXzbF6KE/800x500"> -->
 
-  
+  <img id="image1" src="https://source.unsplash.com/7bwQXzbF6KE/800x500" style="position:absolute;left:25%; top:25%;" height="500" width="800">
 
-</style>
+  </style>
 
-<script>
-  const inputs = document.querySelectorAll('.controls input');
+  <script>
+    const inputs = document.querySelectorAll('.controls input');
 
-  function handleUpdate() {
-    const suffix = this.dataset.sizing || '';
-    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
-  }
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
 
-  inputs.forEach(input => input.addEventListener('change', handleUpdate));
-  inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
 
-</script>
+
+    function leftArrowPressed() {
+      var element = document.getElementById("image1");
+      element.style.left = parseInt(element.style.left) - 5 + 'px';
+    }
+
+    function rightArrowPressed() {
+      var element = document.getElementById("image1");
+      element.style.left = parseInt(element.style.left) + 5 + 'px';
+
+    }
+
+    function upArrowPressed() {
+      var element = document.getElementById("image1");
+      element.style.top = parseInt(element.style.top) - 5 + 'px';
+    }
+
+    function downArrowPressed() {
+      var element = document.getElementById("image1");
+      element.style.top = parseInt(element.style.top) + 5 + 'px';
+    }
+
+
+    function moveSelection(evt) {
+      switch (evt.keyCode) {
+        case 37:
+          leftArrowPressed();
+          break;
+        case 39:
+          rightArrowPressed();
+          break;
+        case 38:
+          upArrowPressed();
+          break;
+        case 40:
+          downArrowPressed();
+          break;
+      }
+    };
+
+    function docReady() {
+
+      window.addEventListener('keydown', moveSelection);
+    }
+  </script>
 
 </body>
+
 </html>

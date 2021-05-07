@@ -1,10 +1,10 @@
 
 :root{
-
     --base: #ff0000;
     --spacing: 10px;
     --blur: 10px;
-
+    --radius:100%;
+    --rotate:0px;
 }
 
 
@@ -12,15 +12,13 @@ img{
     padding: var(--spacing);
     background: var(--base);
     filter: blur(var(--blur));
+    border-radius: var(--radius);
+    transform: rotate(var(--rotate));
 }
-
 
 .hl{
     color: var(--base);
 }
-
-
-
 
 body {
     text-align: center;
