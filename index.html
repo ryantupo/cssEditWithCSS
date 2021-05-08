@@ -31,7 +31,8 @@
 
   <!-- <img id="image1" src="https://source.unsplash.com/7bwQXzbF6KE/800x500"> -->
 
-  <img id="image1" src="https://source.unsplash.com/7bwQXzbF6KE/800x500" style="position:absolute;left:25%; top:25%;" height="500" width="800">
+  <img id="image1" src="https://source.unsplash.com/7bwQXzbF6KE/800x500" style="position:absolute;left:25%; top:25%;"
+    height="500" width="800">
 
   </style>
 
@@ -46,6 +47,11 @@
     inputs.forEach(input => input.addEventListener('change', handleUpdate));
     inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
 
+
+
+
+
+    //////////////////////////////////////////////////////////////////////
 
     function leftArrowPressed() {
       var element = document.getElementById("image1");
@@ -68,9 +74,17 @@
       element.style.top = parseInt(element.style.top) + 5 + 'px';
     }
 
+    function spinSpaceBar() {
+      let element = document.getElementById("image1");
+      element.style.top = parseInt(element.style.top) + 50 + 'px';
+    }
+
 
     function moveSelection(evt) {
       switch (evt.keyCode) {
+        case 32:
+          spinSpaceBar();
+          break;
         case 37:
           leftArrowPressed();
           break;
@@ -83,6 +97,7 @@
         case 40:
           downArrowPressed();
           break;
+
       }
     };
 
